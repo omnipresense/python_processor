@@ -1,32 +1,22 @@
 
 from datetime import datetime
-import requests
-from requests.auth import HTTPDigestAuth
-import IPCamera
-
-
-cam = IPCamera.IPCamera(overlay_url="http://jamwave.xyz/") #to test, use (overlay_url="http://jamwave.xyz")
 
 def on_target_acquired(recent_speed):
     now = datetime.now()
-    tstamp = now.strftime("\n%d/%m/%Y\n%H:%M:%S")
-    cam.update_overlay_payload_for_val(str(abs(round(recent_speed)))+" km/h" + tstamp)
-    cam.send_overlay_payload()
+    print(f'on_target_acquired called at {now.strftime("%d/%m/%Y %H:%M:%S")}')
 
 def on_target_accelerating(recent_speed):
     now = datetime.now()
-    tstamp = now.strftime("\n%d/%m/%Y\n%H:%M:%S")
-    cam.update_overlay_payload_for_val(str(abs(round(recent_speed)))+" km/h" + tstamp)
-    cam.send_overlay_payload()
+    print(f'on_target_accelerating called at {now.strftime("%d/%m/%Y %H:%M:%S")}')
 
 def on_target_decelerating(recent_speed):
-    pass
+    now = datetime.now()
+    print(f'on_target_decelerating called at {now.strftime("%d/%m/%Y %H:%M:%S")}')
 
 def on_target_lost():
-    cam.update_overlay_payload_for_val("")
-    cam.send_overlay_payload()
+    now = datetime.now()
+    print(f'on_target_lost called at {now.strftime("%d/%m/%Y %H:%M:%S")}')
 
 def on_idle_notice_interval():
-    # cam.update_payload_for_val("", cam.payload)
-    # cam.send_payload()
-    pass
+    now = datetime.now()
+    print(f'on_target_lost called at {now.strftime("%d/%m/%Y %H:%M:%S")}')
